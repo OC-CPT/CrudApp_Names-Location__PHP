@@ -12,7 +12,6 @@ $saveBtn = $_POST['save'];
 // Check if button was pressed and then submit data
 
 
-
 if (isset($saveBtn)) {
     $mysqli->query("INSERT INTO data (name, location) VALUES ('$name', '$location')") or
     die ($mysqli->error);
