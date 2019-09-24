@@ -54,8 +54,6 @@
       <?php endwhile; ?>
       </table>
       </div>
-      
-
 
   <?php
 
