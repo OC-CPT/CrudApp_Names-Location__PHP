@@ -19,14 +19,40 @@
 
   <body>
   <?php require_once 'process.php';  ?>
- 
+  <div class="container">
     <?php
     // DB connection
     $mysqli = new mysqli('localhost', 'mysqluser', 'Password', 'crud') or die(mysqli_error($mysqli));
     $result = $mysqli->query("SELECT * FROM DATA") or die($mysqli->error);
      
 //    pre_r($result);
-    pre_r($result->fetch_assoc());
+//    pre_r($result->fetch_assoc());
+  ?>
+
+  <div class="row justify-content-center">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th colspan="2">Action</th>
+          </tr>
+        </thead>
+      
+      <?php 
+        while ($row = $result->fetch_assoc()): ?>
+        <tr>
+          <td><?php echo $row['name']; ?> </td>
+          <td><?php echo $row['location']; ?> </td>
+          <td></td>
+        </tr>
+      <?php endwhile; ?>
+      </table>
+      </div>
+      
+
+
+  <?php
 
     function pre_r ($array){
         echo '<pre>';
@@ -59,4 +85,5 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
   </body>
+  </div>
 </html>
