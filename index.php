@@ -19,6 +19,18 @@
 
   <body>
   <?php require_once 'process.php';  ?>
+  <?php
+
+    if (isset($_SESSION['message'])): ?>
+
+    <div class="alert alert-<?=$_SESSION['msg_type']?>">
+
+    <?php
+      echo $_SESSION['message'];
+      unset($_SESSION['message']);
+      ?>
+    </div>
+  <?php endif ?>
   <div class="container">
     <?php
     // DB connection
@@ -69,16 +81,23 @@
   <div class="container">
 <div class="row justify-content-center">
 <form action="process.php" method="post">
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
     <div class="form-group">
     <label for="name">Name:</label>
-    <input type="text" name="name" class="form-control" value="Enter your location">
+    <input type="text" name="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter your location">
     </div>
     <div class="form-group">
     <label for="location">Location:</label>
-    <input type="text" name="location" value="Enter your location" class="form-control">
+    <input type="text" name="location" value="<?php echo $location; ?>" placeholder="Enter your location" class="form-control">
     </div>
     <div class="form-group">
+    <?php
+      if ($update == true):
+        ?>
+        <button type="submit" name="update" class="btn btn-warning">Update</button>
+      <?php else: ?>
     <button type="submit" name="save" class="btn btn-primary">Save</button>
+      <?php endif; ?>
     </div>
 </form>
 </div>
